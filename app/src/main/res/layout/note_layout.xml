@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/constraintLayout">
+
+    <TextView
+        android:text="Constraint Layout"
+        android:layout_height="16dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:layout_marginBottom="16dp"
+        tools:layout_constraintBottom_creator="1" />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:text="The OK button is now constrained vertically to remain lined up with the baseline of the Cancel button. It was constrained to the bottom edge of the baseline, and that allowed me to drag it up and down the screen - all that changed was the distance from the bottom of the layout. Now, though, it is constrained to the Cancel button and if I try to drag it up or down nothing happens. I can still drag it left or right, which just changes its margin from the Cancel button, but it can no longer be moved up or down.   Some more random text added here just to make sure it's long enough."
+        android:scrollbars="vertical"
+        android:scrollIndicators="right|end"
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:layout_marginTop="16dp"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        android:layout_marginBottom="16dp"
+        tools:layout_constraintBottom_creator="1" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="93dp"
+        android:layout_height="53dp"
+        android:id="@+id/button7"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        android:layout_marginBottom="16dp"
+        tools:layout_constraintBottom_creator="1" />
+
+    <Button
+        android:text="OK"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/button8"
+        app:layout_constraintLeft_toLeftOf="@+id/editText2"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/button7"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toLeftOf="@+id/button7"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/button7"
+        tools:layout_constraintBottom_creator="1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ball_100x100"
+        android:id="@+id/imageView"
+        app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        android:layout_marginTop="48dp"
+        tools:layout_constraintTop_creator="1" />
+
+</android.support.constraint.ConstraintLayout>
