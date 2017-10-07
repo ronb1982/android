@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Variables to hold the operands and type of calculations
     private Double operand1 = null;
-    private String pendingOperation = "start"; // placeholder for app launch
+    private String pendingOperation = " "; // placeholder for app launch
     private static final String STATE_PENDING_OPERATION = "PendingOperation";
     private static final String STATE_OPERAND1 = "Operand1";
 
@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         result = (EditText) findViewById(R.id.result);
         newNumber = (EditText) findViewById(R.id.newNumber);
         displayOperation = (TextView) findViewById(R.id.operation);
+        setOnClickListeners();
+    }
+
+    private void setOnClickListeners() {
 
         // Digits and dot buttons
         Button button0 = (Button) findViewById(R.id.button0);
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
         Button buttonMinus = (Button) findViewById(R.id.buttonMinus);
         Button buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        Button buttonClear = (Button) findViewById(R.id.buttonClear);
+        Button buttonNeg = (Button) findViewById(R.id.buttonNeg);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -71,6 +77,33 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener opListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                int buttonId = view.getId();
+
+                if (buttonId == R.id.buttonNeg) {
+
+                    Double numberToInverse = 0.0;
+
+                    String strResultVal = result.getText().toString();
+                    String strNewNumberVal = newNumber.getText().toString();
+
+                    if (strResultVal != null && !strResultVal.isEmpty()) {
+                        numberToInverse = Double.valueOf(strResultVal);
+                    } else if (strNewNumberVal != null && !strNewNumberVal.isEmpty()) {
+                        numberToInverse = Double.valueOf(strNewNumberVal);
+                    }
+
+                    Double inversedNumber = 0.0;
+
+                    if (numberToInverse > 0) {
+                        inversedNumber = -numberToInverse;
+                    } else if (numberToInverse < 0) {
+                        inversedNumber = Math.abs(numberToInverse);
+                    }
+
+                    newNumber.setText(Double.toString(inversedNumber));
+                }
+
                 Button b = (Button) view;
                 String op = b.getText().toString();
                 String value = newNumber.getText().toString();
@@ -91,6 +124,26 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiply.setOnClickListener(opListener);
         buttonMinus.setOnClickListener(opListener);
         buttonPlus.setOnClickListener(opListener);
+        buttonNeg.setOnClickListener(opListener);
+
+        View.OnClickListener clearListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Button b = (Button) view;
+                int buttonId = view.getId();
+
+                if (buttonId == R.id.buttonClear) {
+                    // Clear fields
+                    newNumber.setText("");
+                    result.setText("");
+                    operand1 = 0.0;
+                    pendingOperation = " ";
+                    displayOperation.setText(pendingOperation);
+                }
+            }
+        };
+
+        buttonClear.setOnClickListener(clearListener);
     }
 
     @Override
@@ -116,12 +169,13 @@ public class MainActivity extends AppCompatActivity {
             operand1 = value;
             result.setText(operand1.toString());
         } else {
-            if (pendingOperation.equals("start")) {
+            if (pendingOperation.equals(" ")) {
                 pendingOperation = operation;
             }
 
             switch (pendingOperation) {
                 case "=":
+                case "NEG":
                     operand1 = value;
                     break;
                 case "/":
